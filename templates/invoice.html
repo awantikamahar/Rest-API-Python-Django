@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>PDF</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .td{
+            padding-left: 10%;
+        }
+        .tdd{
+            padding-left: 25%
+        }
+        .table_row{
+            padding-left: 20px;
+        }
+        .total_bill{
+            margin-top: 50px;
+        }
+        .table_cells{
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-12 col-md-offset-5">
+            <h1>Invoice</h1>
+        </div>
+        <div>
+            <table border="0.2px">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td class="table_cells">Hotel Name</td>
+                        <td class="tdd table_cells">DscignBiosys</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Bill No</td>
+                        <td class="tdd table_cells">{{booking_bill.id}} </td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Hotel Address</td>
+                        <td class="tdd table_cells">Bangalore</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div>
+            <b>Bill to</b>
+            <table border="0.5px">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td class="table_cells">Name</td>
+                        <td class="td table_cells">{{customer_first_name}}&nbsp;&nbsp;&nbsp;&nbsp;{{customer_last_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Address</td>
+                        <td class="td table_cells">{{address}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Phone Number</td>
+                        <td class="td table_cells">{{mobile_number}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Email</td>
+                        <td class="td table_cells">{{email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">City</td>
+                        <td class="td table_cells">{{city}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Pin</td>
+                        <td class="td table_cells">{{pincode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="table_cells">Country</td>
+                        <td class="td table_cells">India</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br />
+        <div>
+            <table class="table table-bordered" border="0.5px">
+                <thead>
+                    <th class="table_cells table_cells ">Room No</th>
+                    <th class="table_cells table_cells">Room Type</th>
+                    <th class="table_cells table_cells">Total Days</th>
+                    <th class="table_cells table_cells">Price</th>
+                    <th class="table_cells table_cells">Tax</th>
+                    <th class="table_cells table_cells">Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table_row table_cells">{{room.room_number}}</td>
+                        <td class="table_row table_cells">{{room.room_type.room_type}}</td>
+                        <td class="table_row table_cells">{{booking_bill.number_of_days}}</td>
+                        <td class="table_row table_cells">{{booking_bill.room_price}}</td>
+                        <td class="table_row table_cells">{{booking_bill.tax}}</td>
+                        <td class="table_row table_cells">{{booking_bill.room_price_total}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="table table-bordered" border="0.5px">
+                <h4>Additional Billing</h4>
+                <thead>
+                    <th class="table_cells">Item</th>
+                    <th class="table_cells">Quantity</th>
+                    <th class="table_cells">Category</th>
+                    <th class="table_cells">Price</th>
+                    <th class="table_cells">Tax</th>
+                    <th class="table_cells">Total</th>
+                </thead>
+                <tbody>
+                    {% if additional_bill %}
+                    {% for a in additional_bill %}
+                    <tr>
+                        <td class="table_cells">{{a.items}}</td>
+                        <td class="table_cells">{{a.qty}}</td>
+                        <td class="table_cells">{{a.category}}</td>
+                        <td class="table_cells">{{a.price}}</td>
+                        <td class="table_cells">{{a.tax}}</td>
+                        <td class="table_cells">{{a.total}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <h4>No additional Bill</h4>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <table class="table table-bordered total_bill" border="0.5px">
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td class="table_cells">Total</td>
+                        <td class="table_cells">{{booking_bill.total_amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-10 col-md-offset-5">
+            <h4>Thanks for visiting</h4>
+        </div>
+    </div>
+</body>
+
+</html>

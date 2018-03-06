@@ -1,0 +1,4 @@
+1.apply leave
+2.Approve leave
+3.manager can see lower employee
+4.who all are applied for leave(validation)
